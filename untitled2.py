@@ -43,6 +43,7 @@ pg.init()
 window_size = (1280,720)
 screen = pg.display.set_mode(window_size)
 screen.fill((0,0,0))
+bg_image = pg.image.load('wall.png')
 pg.display.set_caption('攻城獅')
      
 #球        
@@ -60,7 +61,7 @@ vert_walls = pg.sprite.Group(left_line, right_line)
 balls = pg.sprite.Group(ball)
 sprites = pg.sprite.OrderedUpdates(horiz_walls,vert_walls, balls)  
 done = False
-pause = False   
+pause = False
 while not done:
 # read new event
     for event in pg.event.get():
@@ -85,7 +86,8 @@ while not done:
                         b.kill()
 #update game state
 #redraw
-    screen.fill((0,0,0))
+    screen.blit(bg_image, [0,0])
+    #screen.fill((0,0,0))
     balls.update()
     sprites.draw(screen)
     pg.display.update()
